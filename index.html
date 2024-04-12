@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
+    <title>Image Gallery</title>
+</head>
+<body>
+    <!-- Construct 4 div of images side by side -->
+    <div class="site-content">
+        <h1>Responsive Image Gallery</h1>
+        <div class="gallery">
+            <div class="thumbnail">
+                <i class="arrow left" onclick="assignImage('-')"></i>
+                <img src="image1.jpg" alt="" onclick="assignImage('image1.jpg')">
+                <img src="image2.jpg" alt="" onclick="assignImage('image2.jpg')">
+                <img src="image3.jpg" alt="" onclick="assignImage('image3.jpg')">
+                <img src="image4.jpg" alt="" onclick="assignImage('image4.jpg')">
+                <img src="image5.jpg" alt="" onclick="assignImage('image5.jpg')">
+                <img src="image6.jpg" alt="" onclick="assignImage('image6.jpg')">
+                <img src="image7.jpg" alt="" onclick="assignImage('image7.jpg')">
+                <img src="image8.jpg" alt="" onclick="assignImage('image8.jpg')">
+                <img src="image9.jpg" alt="" onclick="assignImage('image9.jpg')">
+                <i class="arrow right" onclick="assignImage('+')"></i>
+            </div>
+        </div>
+        <!-- On clicking the thumbnail image load the image below in a textarea -->
+        <div class="card-body">
+            <img id="myImage" src="image1.jpg">
+        </div>
+    </div>
+    <script>
+        var globalImgSource="image1.jpg";
+        function setCharAt(str,index,chr) {
+            return str.substring(0,index) + chr + str.substring(index+1);
+        }
+        function assignImage(imgSource){
+            const imgElement=document.getElementById("myImage");
+            if(imgSource=='-'){
+                if(String.fromCharCode(globalImgSource.charCodeAt(5))!=1){
+                    globalImgSource=setCharAt(globalImgSource,5,String.fromCharCode(globalImgSource.charCodeAt(5)-1));
+                }
+                else{
+                    return;
+                }
+                imgSource=globalImgSource;
+            }
+            else if(imgSource=='+'){
+                if(String.fromCharCode(globalImgSource.charCodeAt(5))!='9'){
+                    globalImgSource=setCharAt(globalImgSource,5,String.fromCharCode(globalImgSource.charCodeAt(5)+1));
+                }
+                else{
+                    return;
+                }
+                imgSource=globalImgSource;
+            }
+            imgElement.src=imgSource;
+            globalImgSource=imgSource;
+            imgElement.style="height: 500px; width: 500px;"
+        }
+    </script>
+</body>
+</html>
