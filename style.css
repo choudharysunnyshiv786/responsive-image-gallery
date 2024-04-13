@@ -33,8 +33,8 @@
 .card-body img{
     display: block;
     margin: auto;
-    height: 500px;
-    width: 500px;
+    height: 75vh;
+    width: 75vh;
 }
 .arrow {
     border: solid black;
