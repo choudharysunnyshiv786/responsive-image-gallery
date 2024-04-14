@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <title>Image Gallery</title>
 </head>
 <body>
-    <!-- Construct 4 div of images side by side -->
     <div class="site-content">
         <h1>Responsive Image Gallery</h1>
         <div class="gallery">
@@ -33,33 +32,36 @@
         </div>
     </div>
     <script>
-        var globalImgSource="image1.jpg";
+        var currentImgSource="image1.jpg";
+        //sets str[index]=chr
         function setCharAt(str,index,chr) {
             return str.substring(0,index) + chr + str.substring(index+1);
         }
         function assignImage(imgSource){
             const imgElement=document.getElementById("myImage");
             if(imgSource=='-'){
-                if(String.fromCharCode(globalImgSource.charCodeAt(5))!=1){
-                    globalImgSource=setCharAt(globalImgSource,5,String.fromCharCode(globalImgSource.charCodeAt(5)-1));
+                //converts image2.jpg to image1.jpg
+                if(String.fromCharCode(currentImgSource.charCodeAt(5))!='1'){
+                    currentImgSource=setCharAt(currentImgSource,5,String.fromCharCode(currentImgSource.charCodeAt(5)-1));
                 }
                 else{
                     return;
                 }
-                imgSource=globalImgSource;
+                imgSource=currentImgSource;
             }
             else if(imgSource=='+'){
-                if(String.fromCharCode(globalImgSource.charCodeAt(5))!='9'){
-                    globalImgSource=setCharAt(globalImgSource,5,String.fromCharCode(globalImgSource.charCodeAt(5)+1));
+                //converts image1.jpg to image2.jpg
+                if(String.fromCharCode(currentImgSource.charCodeAt(5))!='9'){
+                    currentImgSource=setCharAt(currentImgSource,5,String.fromCharCode(currentImgSource.charCodeAt(5)+1));
                 }
                 else{
                     return;
                 }
-                imgSource=globalImgSource;
+                imgSource=currentImgSource;
             }
             imgElement.src=imgSource;
-            globalImgSource=imgSource;
-            imgElement.style="height: 75vh; width: 75vh;"
+            //if we click on thumbnail, then we have to reset the currentImgSource
+            currentImgSource=imgSource;
         }
     </script>
 </body>
